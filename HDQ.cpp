@@ -130,7 +130,7 @@ void HDQ::writeByte(uint8_t payload)
 		// Stop bit
 		sbi(*outputReg, pin);   // Bring the pin high
 		if(ii<7)
-		delayMicroseconds(HDQ_DELAY_TCYCH - HDQ_DELAY_THW0);		
+			delayMicroseconds(HDQ_DELAY_TCYCH - HDQ_DELAY_THW0);		
 	}
 
 	// Make sure we leave enough time for the slave to recover
@@ -210,7 +210,7 @@ uint8_t HDQ::read(uint8_t reg)
 		// Wait for the slave to toggle a low, or fail
 		maxTries = HDQ_DELAY_FAIL_TRIES;
 		while (_HDQ_readPin() != 0 && maxTries-- > 0)
-			if (maxTries == 1) return 0x05;
+			if (maxTries == 1) return 0xFF;
 
 		// Wait until Tdsub and half or one bit has passed
 		delayMicroseconds(((HDQ_DELAY_TDW0 - HDQ_DELAY_TDW1) / 2) + HDQ_DELAY_TDW1);
