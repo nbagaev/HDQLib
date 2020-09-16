@@ -129,14 +129,14 @@ void HDQ::writeByte(uint8_t payload)
 
 		// Stop bit
 		sbi(*outputReg, pin);   // Bring the pin high
-		if(ii<7)
+		if(ii<7)//bq2018 don't need this pause at the last bit
 			delayMicroseconds(HDQ_DELAY_TCYCH - HDQ_DELAY_THW0);		
 	}
 
 	// Make sure we leave enough time for the slave to recover
 	cbi(*modeReg, pin);     // Release pin
-	//delayMicroseconds(HDQ_DELAY_TBR);
-	//delayMicroseconds(HDQ_DELAY_TCYCH - HDQ_DELAY_THW0);
+	//delayMicroseconds(HDQ_DELAY_TBR); don't need
+	//delayMicroseconds(HDQ_DELAY_TCYCH - HDQ_DELAY_THW0); don't need
 }
 
 
@@ -153,7 +153,7 @@ void HDQ::writeByte(uint8_t payload)
 */ 
 void HDQ::write(uint8_t reg, uint8_t payload)
 { 
-	// Singal a break 
+	// Signal a break 
 	HDQ::doBreak();
 
 	// Write the register to write
