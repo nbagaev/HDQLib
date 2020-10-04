@@ -71,7 +71,7 @@ public:
      *          return true if it matches the payload
     **/
     bool write(uint8_t reg, uint8_t payload, bool verif);
-    bool write(uint8_t reg, uint8_t payload);
+    void write(uint8_t reg, uint8_t payload);
 
     /**
      * read: read from the device
